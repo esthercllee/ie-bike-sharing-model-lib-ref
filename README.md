@@ -1,6 +1,6 @@
-# Bike sharing prediction model
+## Bike sharing prediction model
 
-## Usage
+### Usage
 
 To install the library:
 
@@ -22,30 +22,23 @@ Basic usage:
 ...     "feeling_temperature_C": 14.395,
 ...     "humidity": 81.0,
 ...     "windspeed": 0.0,
-... })
+... }, model = "xgboost")
 1
 ```
+## Bike Sharing Model - Web App
 
-## Development
+### Usage
 
-To install a development version of the library:
+Launch the application and open
+http://127.0.0.1:5000/predict?date=2012-10-01T18:00:00&weathersit=1&temperature_C=15&feeling_temperature_C=14&humidity=20&windspeed=5&model=xgboost
+with your browser.
 
-```
-$ flit install --symlink --extras=dev
-```
+### Overview
 
-To run the tests:
-
-```
-$ pytest
-```
-
-To measure the coverage:
+The `app.py` file contains a simplified application that can be run standalone:
 
 ```
-$ pytest --cov=ie_bike_model
+$ flask run
 ```
 
-## Trivia
-
-Total implementation time: **4 hours 30 minutes** 🏁
+The rest of the files contain the same functionality in a more structured way.
