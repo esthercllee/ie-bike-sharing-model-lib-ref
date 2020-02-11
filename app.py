@@ -22,8 +22,9 @@ def get_predict():
     parameters["humidity"] = float(parameters["humidity"])
     parameters["windspeed"] = float(parameters["windspeed"])
     model = request.args.get("model", "xgboost")
-    result = predict(parameters, model = model)
+    result = predict(parameters, model=model)
     return {"result": result}
+
 
 if __name__ == "__main__":
     app.run(debug=True)

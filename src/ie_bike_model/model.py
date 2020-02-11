@@ -164,11 +164,13 @@ def train_xgboost(hour):
     xgb.fit(hour_d_train_x, hour_d_train_y)
     return xgb
 
+
 def train_ridge(hour):
     ridge = Ridge()
     hour_d_train_x, _, hour_d_train_y, _, = split_train_test(hour)
     ridge.fit(hour_d_train_x, hour_d_train_y)
     return ridge
+
 
 def postprocess(hour):
     # Avoid modifying the original dataset at the cost of RAM
@@ -184,7 +186,7 @@ def train_and_persist(model_dir=None, hour_path=None, model="xgboost"):
     hour = dummify(hour)
     hour = postprocess(hour)
 
-    if model=="xgboost":
+    if model == "xgboost":
         # TODO: Implement other models?
         model = train_xgboost(hour)
 
@@ -192,7 +194,7 @@ def train_and_persist(model_dir=None, hour_path=None, model="xgboost"):
 
         joblib.dump(model, model_path)
 
-    elif model=="ridge":
+    elif model == "ridge":
         model = train_ridge(hour)
 
         model_path = get_model_path(model_dir, model_type="ridge")
@@ -248,7 +250,7 @@ def predict(parameters, model_dir=None, model="xgboost"):
     """
     model_path = get_model_path(model_dir, model_type=model)
     if not os.path.exists(model_path):
-        train_and_persist(model_dir, model = model)
+        train_and_persist(model_dir, model=model)
 
     model = joblib.load(model_path)
 
